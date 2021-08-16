@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css" >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project One</title>
+</head>
+<body class="body">
+    <img src="logo.svg" style="margin: 90px 10px 0px 640px;" >
+    <div class="baseClass">
+        <div style="padding: 10px;" >
+
+              <h4  style="margin: 20px 10px 10px 1px;" id="billInputs">Bill</h4>
+            
+      
+           <input class="icon1" style="border-color: rgb(147, 192, 192);
+                fill: aqua; box-shadow: white; border-collapse: collapse;
+                margin: 0px 10px 10px 1px; text-align: end; " placeholder="0" id="bill">
+            </div>
+            
+                <h4 style="margin: 0px 10px 10px 10px;">Select Tip %</h4>
+            
+
+            <div style="margin: 14px 10px 10px 10px;">
+                <button style="height: .4in; width: .8in;  background-color: rgb(9, 72, 77); border-radius: 7px;" onclick="five()" >5%</button>
+                <button style="height: .4in; width: .8in;  background-color: rgb(9, 72, 77);  border-radius: 7px;" onclick="ten()" >10%</button>
+                <button style="height: .4in; width: .8in;  background-color: rgb(9, 72, 77);  border-radius: 7px;" onclick="fifteen()" >15%</button>
+               
+            </div>
+            <div style="margin: 18px 10px 10px 10px;">
+                 <button style="height: .4in; width: .8in; background-color: rgb(9, 72, 77);  border-radius: 7px;" onclick="twentyfive()">25%</button>
+                <button style="height: .4in; width: .8in;  background-color: rgb(9, 72, 77);  border-radius: 7px;" onclick="fifty()" >50%</button>
+                <button style="height: .4in; width: .8in; border-color: white;  border-radius: 7px;" onclick="Total()" >Custom</button>
+            </div>
+            
+                <h4 style="margin: 13px 10px 10px 13px;">Number of people</h4>
+            
+            <div>
+                <input class="icon2" style="border-color: rgb(147, 192, 192);
+                fill: aqua; box-shadow: white; border-collapse: collapse;
+                margin: -5px 10px 10px 13px; text-align: end;" placeholder="0" id="numPeople" >
+                <p id="error" style="margin-top: -64px; margin-left: 140px; color: red; width: 140px; position: fixed;" ></p>
+            </div>
+
+            <div class="resultpane" >
+                <div> 
+                    <h4 style=" font-weight: 400, 500, 700; margin: 10px 10px 10px 10px ; padding: 16px;">Tip Amount</h4>
+                    <p style="margin: -26px 10px 0px 25px;">/ person</p>
+                    <img src="icon-dollar.svg" style="margin: -35px 10px 10px 250px; " >
+                    <h2 style="margin: -35px 10px 10px 261px; width: 65px; color:rgb(99, 218, 218); " id="peop"  >00.00</h2>
+                </div>
+
+                <div >
+                    <h4 style=" height: 20px; width: 40px;margin: 34px 10px 0px 26px ;">Total</h4>
+                     <p style="margin: -1px 10px 10px 26px;">/ person</p>
+                    <img src="icon-dollar.svg" style="margin: -34px 10px 50px 250px; "> 
+                    <h2 style="margin: -76px 10px 10px 261px; width: 65px;
+                     font-size: 24px; font-weight: 400, 500, 700; color:rgb(99, 218, 218); " id="tot"  >00.00
+                       </h2>
+
+                </div>
+
+                <div style="margin: 90px 10px 10px -7px ;">
+                    <button style="background-color: rgb(99, 218, 218); width: 260px; height: 40px; margin-left: 40px; border-radius: 10px; box-sizing: content-box;" id="res" onclick="reset()"> <strong>RESET</strong></button>
+                </div>
+
+            </div>
+    </div>
+
+    <code>
+        <script>
+            
+            function Total() {
+                var sum = 0;
+                var billvalue =  parseInt(document.getElementById("bill").value);
+                var people = parseInt(document.getElementById("numPeople").value);
+                sum = billvalue + people;
+                document.getElementById("tot").innerHTML = sum;
+                document.getElementById("peop").innerHTML = people;
+
+                let msg;
+                if (people <= 0){
+                    msg = "people can't be zero";
+                    document.getElementById("peop").innerHTML = "00.00";
+                   document.getElementById("tot").innerHTML = "00.00";
+                }
+                else{
+                    msg = "";
+                    
+                }document.getElementById("error").innerHTML = msg;
+               
+
+            }
+            function reset(){
+                var num1 = "00.00";
+                var num2 = "00.00";
+                document.getElementById("tot").innerHTML = num1;
+                document.getElementById("peop").innerHTML = num2;
+              
+            }
+
+            function five(){
+                var billnum = parseInt(document.getElementById("bill").value);
+                var peoplenum = parseInt(document.getElementById("numPeople").value);
+                var tip = 0.150;
+                var tipAmount = 0;
+                var tot;
+                tipAmount = (billnum/peoplenum)*tip;
+                tot = (billnum/peoplenum) + tipAmount;
+                document.getElementById("peop").innerHTML = tipAmount;
+                document.getElementById("tot").innerHTML = tot;
+                let msg;
+                if (peoplenum <= 0){
+                    msg = "people can't be zero";
+                    document.getElementById("peop").innerHTML = "00.00";
+                   document.getElementById("tot").innerHTML = "00.00";
+                }
+                else{
+                    msg = "";
+                    
+                }document.getElementById("error").innerHTML = msg;
+            }
+            function ten(){
+                var billnum = parseInt(document.getElementById("bill").value);
+                var peoplenum = parseInt(document.getElementById("numPeople").value);
+                var tip = 0.100;
+                var tipAmount = 0;
+                var tot;
+                tipAmount = (billnum/peoplenum)*tip;
+                tot = (billnum/peoplenum) + tipAmount;
+                document.getElementById("peop").innerHTML = tipAmount;
+                document.getElementById("tot").innerHTML = tot;
+                let msg;
+                if (peoplenum <= 0){
+                    msg = "people can't be zero";
+                    document.getElementById("peop").innerHTML = "00.00";
+                   document.getElementById("tot").innerHTML = "00.00";
+                }
+                else{
+                    msg = "";
+                    
+                }document.getElementById("error").innerHTML = msg;
+            }
+            function fifteen(){
+                var billnum = parseInt(document.getElementById("bill").value);
+                var peoplenum = parseInt(document.getElementById("numPeople").value);
+                var tip = 0.150;
+                var tipAmount = 0;
+                var tot;
+                tipAmount = (billnum/peoplenum)*tip;
+                tot = (billnum/peoplenum) + tipAmount;
+                document.getElementById("peop").innerHTML = tipAmount;
+                document.getElementById("tot").innerHTML = tot;
+                let msg;
+                if (peoplenum <= 0){
+                    msg = "people can't be zero";
+                    document.getElementById("peop").innerHTML = "00.00";
+                   document.getElementById("tot").innerHTML = "00.00";
+                }
+                else{
+                    msg = "";
+                    
+                }document.getElementById("error").innerHTML = msg;
+            }
+            function twentyfive(){
+                var billnum = parseInt(document.getElementById("bill").value);
+                var peoplenum = parseInt(document.getElementById("numPeople").value);
+                var tip = 0.250;
+                var tipAmount = 0;
+                var tot;
+                tipAmount = (billnum/peoplenum)*tip;
+                tot = (billnum/peoplenum) + tipAmount;
+                document.getElementById("peop").innerHTML = tipAmount;
+                document.getElementById("tot").innerHTML = tot;
+                let msg;
+                if (peoplenum <= 0){
+                    msg = "people can't be zero";
+                    document.getElementById("peop").innerHTML = "00.00";
+                   document.getElementById("tot").innerHTML = "00.00";
+                }
+                else{
+                    msg = "";
+                    
+                }document.getElementById("error").innerHTML = msg;
+            }
+            function fifty(){
+                var billnum = parseInt(document.getElementById("bill").value);
+                var peoplenum = parseInt(document.getElementById("numPeople").value);
+                var tip = 0.5;
+                var tipAmount = 0;
+                var tot;
+                tipAmount = (billnum/peoplenum)*tip;
+                tot = (billnum/peoplenum) + tipAmount;
+                document.getElementById("peop").innerHTML = tipAmount;
+                document.getElementById("tot").innerHTML = tot;
+                let msg;
+                if (peoplenum <=0){
+                    msg = "people can't be zero";
+                   document.getElementById("peop").innerHTML = "00.00";
+                   document.getElementById("tot").innerHTML = "00.00";
+                }
+              
+                else{
+                    msg = "";
+
+                }document.getElementById("error").innerHTML = msg;
+                
+            }
+            
+
+        </script>
+    </code>
+
+</body>
+</html>
